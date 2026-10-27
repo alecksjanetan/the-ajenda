@@ -190,7 +190,7 @@ h1 em, h2 em { color: var(--blush-dark); font-style: normal; }
 .proof-grid [data-reveal="up"]:nth-child(4) { transition-delay: .26s; }
 .proof-grid [data-reveal="up"]:nth-child(5) { transition-delay: .34s; }
 .code-lab { padding-top: 145px; }
-.code-lab-grid { align-items: stretch; display: grid; gap: 26px; grid-template-columns: .82fr 1.18fr; }
+.code-lab-grid { align-items: start; display: grid; gap: 26px; grid-template-columns: .82fr 1.18fr; }
 .code-notes { border-top: 1px solid var(--line); }
 .code-note { align-items: start; border-bottom: 1px solid var(--line); cursor: default; display: grid; gap: 18px; grid-template-columns: 32px 1fr 22px; padding: 22px 0; transition: background .25s, padding .25s; }
 .code-note:hover, .code-note.active { background: rgba(236,160,177,.12); padding-inline: 14px; }
