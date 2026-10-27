@@ -165,6 +165,10 @@ h1 em, h2 em { color: var(--blush-dark); font-style: normal; }
 .hero-art.is-visible { transform: perspective(900px) rotateX(var(--tilt-y, 0deg)) rotateY(var(--tilt-x, 0deg)); transition: opacity .8s cubic-bezier(.22,1,.36,1), transform .35s ease-out; }
 .hero-art.is-visible .hero-grid { transform: perspective(500px) rotateX(58deg) translate3d(var(--parallax-x, 0px), calc(30% + var(--parallax-y, 0px)), 0); }
 .hero-copy > * { opacity: 0; transform: translateY(16px); animation: heroIn .8s cubic-bezier(.22,1,.36,1) forwards; }
+.hero-copy > h1 { animation: none; opacity: 1; transform: none; }
+.hero-copy h1 .hero-line { display: inline-block; opacity: 0; transform: translateY(22px); animation: heroLineIn .9s cubic-bezier(.22,1,.36,1) forwards; }
+.hero-copy h1 .hero-line-one { animation-delay: .12s; }
+.hero-copy h1 .hero-line-two { animation-delay: .48s; }
 .hero-copy > :nth-child(1) { animation-delay: .12s; }
 .hero-copy > :nth-child(2) { animation-delay: .2s; }
 .hero-copy > :nth-child(3) { animation-delay: .3s; }
@@ -240,6 +244,7 @@ h1 em, h2 em { color: var(--blush-dark); font-style: normal; }
 .app-window-input { align-items: center; background: rgba(255,255,255,.5); border-top: 1px solid rgba(255,255,255,.55); color: rgba(65,57,77,.55); display: flex; font: 12px var(--mono); justify-content: space-between; padding: 15px 20px; }
 .app-window-input b { align-items: center; background: linear-gradient(90deg,#ef95bd,#ae91ef); border-radius: 99px; color: white; display: flex; height: 29px; justify-content: center; width: 45px; }
 @keyframes heroIn { to { opacity: 1; transform: none; } }
+@keyframes heroLineIn { to { opacity: 1; transform: none; } }
 @keyframes heroSpin { from { transform: translate(-50%, -50%) rotate(35deg); } to { transform: translate(-50%, -50%) rotate(395deg); } }
 @keyframes scanline { 0%, 100% { opacity: 0; transform: translateY(-30px); } 20%, 80% { opacity: 1; } 50% { transform: translateY(325px); } }
 @keyframes dialFloat { 0%, 100% { transform: translateY(0) rotate(-8deg); } 50% { transform: translateY(10px) rotate(8deg); } }
@@ -300,5 +305,5 @@ h1 em, h2 em { color: var(--blush-dark); font-style: normal; }
 
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; scroll-behavior: auto !important; transition-duration: .01ms !important; }
-  [data-reveal], .hero-copy > * { opacity: 1; transform: none; }
+  [data-reveal], .hero-copy > *, .hero-copy h1 .hero-line { opacity: 1; transform: none; }
 }
