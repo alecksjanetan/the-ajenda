@@ -80,7 +80,7 @@ h1 em, h2 em { color: var(--blush-dark); font-style: normal; }
 .proof-grid strong, .proof-grid span { display: block; }
 .proof-grid strong { font: 600 15px var(--display); }
 .proof-grid span { color: rgba(247,244,239,.58); font-size: 11px; margin-top: 2px; }
-.work, .experience, .about, .contact { padding: 145px 0 0; }
+.work, .experience, .about, .dreams, .contact { padding: 145px 0 0; }
 .section-heading { align-items: end; display: flex; gap: 80px; justify-content: space-between; margin-bottom: 62px; }
 .section-heading h2 { margin-bottom: 0; }
 .section-note { color: var(--muted); font-size: 16px; line-height: 1.55; max-width: 330px; }
@@ -127,6 +127,18 @@ h1 em, h2 em { color: var(--blush-dark); font-style: normal; }
 .timeline-detail { color: var(--muted); font-size: 14px; line-height: 1.5; margin: 0; max-width: 440px; }
 .timeline-item.is-current .timeline-role h3 { color: var(--blush-dark); }
 .about-panel { background: var(--paper-deep); display: grid; gap: 80px; grid-template-columns: 1.05fr .95fr; padding: 70px; }
+.dream-grid { display: grid; gap: 18px; grid-template-columns: repeat(3, 1fr); margin-top: 48px; }
+.dream-card { border: 1px solid var(--line); display: flex; flex-direction: column; min-height: 286px; overflow: hidden; padding: 25px; position: relative; transition: transform .25s, box-shadow .25s; }
+.dream-card::after { color: rgba(23,23,23,.08); content: attr(data-number); font: 600 150px/.8 var(--display); pointer-events: none; position: absolute; right: -8px; top: 90px; }
+.dream-card:hover { box-shadow: 10px 10px 0 var(--blush); transform: translateY(-5px); }
+.dream-card-lead { background: var(--paper-deep); }
+.dream-card-game { background: #dff0ee; }
+.dream-card-bike { background: var(--blush); }
+.dream-index, .dream-tag { font: 500 10px var(--mono); letter-spacing: .06em; text-transform: uppercase; }
+.dream-index { color: var(--blush-dark); }
+.dream-tag { align-self: flex-end; color: rgba(23,23,23,.54); margin-top: -12px; }
+.dream-card h3 { font: 600 clamp(25px, 2.6vw, 38px)/.96 var(--display); letter-spacing: -.06em; margin: auto 0 16px; position: relative; z-index: 1; }
+.dream-card p { color: rgba(23,23,23,.68); font-size: 14px; line-height: 1.45; margin: 0; max-width: 300px; position: relative; z-index: 1; }
 .about-copy h2 { font-size: clamp(46px, 5vw, 69px); }
 .about-copy p:not(.eyebrow) { color: var(--muted); font-size: 16px; line-height: 1.58; max-width: 475px; }
 .about-copy strong { color: var(--ink); }
@@ -342,6 +354,8 @@ h1 em, h2 em { color: var(--blush-dark); font-style: normal; }
   .timeline-role { margin: 10px 0 13px; }
   .about-panel { display: block; padding: 44px 30px; }
   .toolkit { border-left: 0; border-top: 1px solid var(--line); margin-top: 44px; padding: 35px 0 0; }
+  .dream-grid { display: block; margin-top: 36px; }
+  .dream-card { margin-bottom: 14px; min-height: 245px; }
   .code-lab-grid, .command-snapshot { display: block; }
   .code-console { animation: accordionIn .35s ease both; height: auto; margin-top: 0; opacity: 1; transform: none; }
   .code-notes > .code-console { box-shadow: 8px 8px 0 var(--blush); margin-bottom: 14px; }
