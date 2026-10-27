@@ -155,26 +155,40 @@ const codeNotes = document.querySelectorAll(".code-note");
 const consoleLabel = document.querySelector(".console-top small");
 const consoleIndex = document.querySelector(".console-top > span:last-child");
 const codeConsole = document.querySelector(".code-console code");
+const consolePreview = document.querySelector(".console-preview");
+const previewStatus = document.querySelector(".preview-status b");
+const previewCore = document.querySelector(".preview-core");
+const previewCores = ["AJ", "$", "→", "↻", "✓", "✦"];
 const codeExamples = [
   {
-    label: "aj / experiments / motion.js",
+    label: "Code / OMH / OMH Circular Slider (Nice One).html",
     index: "⌘ 01",
-    markup: '<span class="syntax-comment">// make the interface feel alive</span>\n<span class="syntax-keyword">const</span> <span class="syntax-name">orbit</span> = <span class="syntax-function">(items, radius)</span> =&gt; {\n  <span class="syntax-keyword">return</span> items.<span class="syntax-function">map</span>((item, index) =&gt; {\n    <span class="syntax-keyword">const</span> angle = index * (<span class="syntax-value">Math.PI</span> * <span class="syntax-value">2</span> / items.length);\n    <span class="syntax-keyword">return</span> {\n      ...item,\n      x: <span class="syntax-function">Math.cos</span>(angle) * radius,\n      y: <span class="syntax-function">Math.sin</span>(angle) * radius\n    };\n  });\n};'
+    markup: '<span class="syntax-comment">// OMH / circular slider</span>\n<span class="syntax-keyword">this</span>.<span class="syntax-name">currentAngle</span> = <span class="syntax-value">0</span>;\n<span class="syntax-keyword">this</span>.<span class="syntax-name">stepAngle</span> = <span class="syntax-value">2</span> * <span class="syntax-value">Math.PI</span> / slides.<span class="syntax-function">length</span>;\n<span class="syntax-keyword">this</span>.slidesHolder.style.transitionDuration = animationDuration + <span class="syntax-value">"ms"</span>;\n<span class="syntax-keyword">this</span>.<span class="syntax-function">onResize</span>();\n<span class="syntax-keyword">this</span>.<span class="syntax-function">setAutoplay</span>();'
   },
   {
-    label: "aj / interaction / checklist.js",
+    label: "Code / Crestbrick / Crestbrick Property Evaluator.html",
     index: "⌘ 02",
-    markup: '<span class="syntax-comment">// keep small tools easy to use</span>\n<span class="syntax-keyword">const</span> <span class="syntax-name">addItem</span> = <span class="syntax-function">(text)</span> =&gt; {\n  <span class="syntax-keyword">const</span> item = document.<span class="syntax-function">createElement</span>(<span class="syntax-value">"li"</span>);\n  item.textContent = text;\n  list.<span class="syntax-function">append</span>(item);\n  input.value = <span class="syntax-value">""</span>;\n};'
+    markup: '<span class="syntax-comment">// Crestbrick / property evaluator</span>\n$(<span class="syntax-value">"cb-search-btn"</span>).<span class="syntax-function">addEventListener</span>(<span class="syntax-value">"click"</span>, <span class="syntax-keyword">function</span>() {\n  <span class="syntax-keyword">var</span> q = $(<span class="syntax-value">"cb-search-input"</span>).value.<span class="syntax-function">trim</span>();\n  <span class="syntax-keyword">if</span> (q) <span class="syntax-function">runSearch</span>(q);\n});\n\n<span class="syntax-keyword">function</span> <span class="syntax-name">runSearch</span>(q) {\n  <span class="syntax-comment">// render property suggestions</span>\n}'
   },
   {
-    label: "aj / interaction / scroll-story.js",
+    label: "Code / A2A / A2A Activities Horizontal Scroll.html",
     index: "⌘ 03",
-    markup: '<span class="syntax-comment">// let the scroll reveal the structure</span>\n<span class="syntax-name">ScrollTrigger</span>.<span class="syntax-function">create</span>({\n  trigger: <span class="syntax-value">".activity-track"</span>,\n  start: <span class="syntax-value">"top top"</span>,\n  end: <span class="syntax-value">"+=1600"</span>,\n  pin: <span class="syntax-keyword">true</span>,\n  scrub: <span class="syntax-keyword">true</span>\n});'
+    markup: '<span class="syntax-comment">// A2A / activities horizontal scroll</span>\n<span class="syntax-name">gsap</span>.<span class="syntax-function">registerPlugin</span>(ScrollTrigger);\n<span class="syntax-keyword">let</span> sections = gsap.utils.<span class="syntax-function">toArray</span>(<span class="syntax-value">".panel"</span>);\n<span class="syntax-keyword">let</span> scrollTween = gsap.<span class="syntax-function">to</span>(sections, {\n  xPercent: <span class="syntax-value">-100</span> * (sections.length - <span class="syntax-value">1</span>),\n  ease: <span class="syntax-value">"none"</span>,\n  scrollTrigger: {\n    trigger: <span class="syntax-value">".container9"</span>, pin: <span class="syntax-keyword">true</span>,\n    scrub: <span class="syntax-value">0.1</span>, end: <span class="syntax-value">"+=3000"</span>\n  }\n});'
   },
   {
-    label: "aj / little-command / next.js",
+    label: "Code / CRU / CRU Birthday Continuous Slider.html",
     index: "⌘ 04",
-    markup: '<span class="syntax-comment">// turn a message into momentum</span>\n<span class="syntax-keyword">const</span> <span class="syntax-name">nextStep</span> = <span class="syntax-function">(message)</span> =&gt; ({\n  source: message,\n  status: <span class="syntax-value">"ready"</span>,\n  owner: <span class="syntax-value">"aj"</span>,\n  action: <span class="syntax-keyword">true</span>\n});'
+    markup: '<span class="syntax-comment">// CRU / continuous logo slider</span>\n<span class="syntax-keyword">var</span> rotating = <span class="syntax-keyword">true</span>;\n$(document).<span class="syntax-function">on</span>({\n  mouseenter: <span class="syntax-keyword">function</span>() { rotating = <span class="syntax-keyword">false</span>; },\n  mouseleave: <span class="syntax-keyword">function</span>() { rotating = <span class="syntax-keyword">true</span>; }\n}, <span class="syntax-value">".showcase"</span>);\n\n<span class="syntax-keyword">function</span> <span class="syntax-name">rotateSlider</span>() {\n  <span class="syntax-keyword">if</span> (rotating !== <span class="syntax-keyword">false</span>) {\n    $(<span class="syntax-value">".slider .item:first"</span>).<span class="syntax-function">animate</span>({ marginLeft: <span class="syntax-value">"-200px"</span> }, <span class="syntax-value">4000</span>);\n  }\n}'
+  },
+  {
+    label: "Code / OMH / OMH Checklist.html",
+    index: "⌘ 05",
+    markup: '<span class="syntax-comment">// OMH / checklist persistence</span>\n<span class="syntax-keyword">function</span> <span class="syntax-name">store</span>() {\n  itemClass = <span class="syntax-value">".item"</span> + count + <span class="syntax-value">"-textbox"</span>;\n  itemStore = <span class="syntax-value">"item"</span> + count;\n  <span class="syntax-keyword">if</span> (localStorage.<span class="syntax-function">getItem</span>(itemStore)) {\n    $(itemClass).<span class="syntax-function">val</span>(localStorage.<span class="syntax-function">getItem</span>(itemStore));\n  }\n  $(itemClass).<span class="syntax-function">on</span>(<span class="syntax-value">"keyup"</span>, <span class="syntax-keyword">function</span>() {\n    localStorage.<span class="syntax-function">setItem</span>(itemStore, $(<span class="syntax-keyword">this</span>).<span class="syntax-function">val</span>());\n  });\n}'
+  },
+  {
+    label: "Code / CW / CW Product Features.html",
+    index: "⌘ 06",
+    markup: '<span class="syntax-comment">&lt;!-- CW / product features --&gt;</span>\n<span class="syntax-keyword">&lt;div</span> <span class="syntax-name">class</span>=<span class="syntax-value">"ul2"</span><span class="syntax-keyword">&gt;</span>\n  <span class="syntax-keyword">&lt;div</span> <span class="syntax-name">class</span>=<span class="syntax-value">"li2"</span><span class="syntax-keyword">&gt;</span>✨ Provides protection against harmful UV sun rays<span class="syntax-keyword">&lt;/div&gt;</span>\n  <span class="syntax-keyword">&lt;div</span> <span class="syntax-name">class</span>=<span class="syntax-value">"li2"</span><span class="syntax-keyword">&gt;</span>✨ Brightens and whitens skin<span class="syntax-keyword">&lt;/div&gt;</span>\n  <span class="syntax-keyword">&lt;div</span> <span class="syntax-name">class</span>=<span class="syntax-value">"li2"</span><span class="syntax-keyword">&gt;</span>✨ Slows down signs of skin aging<span class="syntax-keyword">&lt;/div&gt;</span>\n<span class="syntax-keyword">&lt;/div&gt;</span>'
   }
 ];
 
@@ -188,5 +202,8 @@ codeNotes.forEach((note, index) => {
     codeConsole.innerHTML = example.markup;
     consoleLabel.textContent = note.dataset.codeSource || example.label;
     consoleIndex.textContent = example.index;
+    if (consolePreview) consolePreview.dataset.mode = `mode-${index + 1}`;
+    if (previewStatus) previewStatus.textContent = note.dataset.preview || "live / ready";
+    if (previewCore) previewCore.textContent = previewCores[index] || "AJ";
   });
 });
