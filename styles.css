@@ -223,8 +223,8 @@ h1 em, h2 em { color: var(--blush-dark); font-style: normal; }
 .console-preview[data-mode="mode-2"] .scene-property,
 .console-preview[data-mode="mode-3"] .scene-scroll,
 .console-preview[data-mode="mode-4"] .scene-slider,
-.console-preview[data-mode="mode-5"] .scene-checklist,
-.console-preview[data-mode="mode-6"] .scene-features { display: block; }
+.console-preview[data-mode="mode-5"] .scene-checklist { display: block; }
+.console-preview[data-mode="mode-6"] .scene-features { display: flex; }
 .scene-orbit::before { border: 1px solid rgba(247,244,239,.13); border-radius: 50%; content: ""; height: 124px; left: 50%; position: absolute; top: 50%; transform: translate(-50%, -50%); width: 220px; }
 .scene-orbit::after { background: linear-gradient(90deg, transparent, rgba(236,160,177,.7), transparent); content: ""; height: 1px; left: 8%; position: absolute; top: 50%; width: 84%; }
 .preview-orbit { animation: previewOrbit 7s linear infinite; border: 1px solid rgba(236,160,177,.72); border-radius: 50%; height: 106px; left: calc(50% - 53px); position: absolute; top: calc(50% - 53px); width: 106px; }
@@ -269,7 +269,7 @@ h1 em, h2 em { color: var(--blush-dark); font-style: normal; }
 .check-row i { align-items: center; border: 1px solid #eca0b1; border-radius: 3px; color: #171717; display: flex; font-style: normal; height: 16px; justify-content: center; width: 16px; }
 .check-row.is-done i { animation: previewCheck 1.8s ease-in-out infinite; background: #9dd5ca; border-color: #9dd5ca; }
 .check-row.is-done span { color: rgba(247,244,239,.46); text-decoration: line-through; }
-.scene-features { display: flex; gap: 8px; justify-content: center; padding-top: 42px; }
+.scene-features { align-items: center; display: none; gap: 8px; justify-content: center; padding-top: 42px; }
 .feature-tile { animation: previewFloat 3.6s ease-in-out infinite; color: #171717; min-height: 82px; padding: 10px; transform: rotate(-4deg); width: 84px; }
 .feature-tile:nth-child(2) { animation-delay: .35s; transform: rotate(3deg); }
 .feature-tile:nth-child(3) { animation-delay: .7s; transform: rotate(-2deg); }
