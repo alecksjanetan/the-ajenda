@@ -155,10 +155,15 @@ const codeNotes = document.querySelectorAll(".code-note");
 const consoleLabel = document.querySelector(".console-top small");
 const consoleIndex = document.querySelector(".console-top > span:last-child");
 const codeConsole = document.querySelector(".code-console code");
+const codeConsolePanel = document.querySelector(".code-console");
+const codeLabGrid = document.querySelector(".code-lab-grid");
+const codeNotesPanel = document.querySelector(".code-notes");
 const consolePreview = document.querySelector(".console-preview");
 const previewStatus = document.querySelector(".preview-status b");
 const previewCore = document.querySelector(".preview-core");
 const previewCores = ["AJ", "$", "→", "↻", "✓", "✦"];
+const mobileCodeLayout = window.matchMedia("(max-width: 850px)");
+let mobileCodeOpen = false;
 const codeExamples = [
   {
     label: "Code / OMH / OMH Circular Slider (Nice One).html",
@@ -192,18 +197,50 @@ const codeExamples = [
   }
 ];
 
+function renderCodeExample(note, index) {
+  if (!codeConsole) return;
+  const example = codeExamples[index];
+  if (!example) return;
+  codeConsole.innerHTML = example.markup;
+  consoleLabel.textContent = note.dataset.codeSource || example.label;
+  consoleIndex.textContent = example.index;
+  if (consolePreview) consolePreview.dataset.mode = `mode-${index + 1}`;
+  if (previewStatus) previewStatus.textContent = note.dataset.preview || "live / ready";
+  if (previewCore) previewCore.textContent = previewCores[index] || "AJ";
+}
+
+function placeCodeConsole() {
+  if (!codeConsolePanel || !codeLabGrid || !codeNotesPanel) return;
+  const activeNote = document.querySelector(".code-note.active") || codeNotes[0];
+  if (mobileCodeLayout.matches) {
+    if (mobileCodeOpen && activeNote) activeNote.insertAdjacentElement("afterend", codeConsolePanel);
+    else codeConsolePanel.remove();
+  } else {
+    codeLabGrid.appendChild(codeConsolePanel);
+  }
+}
+
 codeNotes.forEach((note, index) => {
+  note.setAttribute("role", "button");
+  note.setAttribute("tabindex", "0");
   note.addEventListener("click", () => {
     codeNotes.forEach((item) => item.classList.remove("active"));
     note.classList.add("active");
-    if (!codeConsole) return;
-    const example = codeExamples[index];
-    if (!example) return;
-    codeConsole.innerHTML = example.markup;
-    consoleLabel.textContent = note.dataset.codeSource || example.label;
-    consoleIndex.textContent = example.index;
-    if (consolePreview) consolePreview.dataset.mode = `mode-${index + 1}`;
-    if (previewStatus) previewStatus.textContent = note.dataset.preview || "live / ready";
-    if (previewCore) previewCore.textContent = previewCores[index] || "AJ";
+    mobileCodeOpen = true;
+    renderCodeExample(note, index);
+    placeCodeConsole();
+  });
+  note.addEventListener("keydown", (event) => {
+    if (event.key === "Enter" || event.key === " ") {
+      event.preventDefault();
+      note.click();
+    }
   });
 });
+
+if (mobileCodeLayout.matches) codeNotes.forEach((note) => note.classList.remove("active"));
+mobileCodeLayout.addEventListener("change", () => {
+  if (mobileCodeLayout.matches) mobileCodeOpen = false;
+  placeCodeConsole();
+});
+placeCodeConsole();
